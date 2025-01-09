@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 
 export const AdminSession = () => {
 
-    const socket = io("http://localhost:4000");
+    const socket = io("https://sistema-de-apuestas-server.onrender.com");
 
     const { code } = useParams();
 
