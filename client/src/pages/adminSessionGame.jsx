@@ -2,42 +2,30 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import io from 'socket.io-client';
 
-export const Session = () => {
+export const AdminSession = () => {
 
     const socket = io("http://localhost:4000");
 
     const { code } = useParams();
 
     const [ players, setPlayers ] = useState([]);
-    const [ playerJoined, setPlayerJoined ] = useState(false);
-
-
-    const name = sessionStorage.getItem("name");
-    const userId = sessionStorage.getItem("userId");
-
+    const [ adminJoin, setAdminJoin ] = useState(false);
 
     useEffect(() => {
 
-        if(!playerJoined){
-            socket.emit('session_join', [code, name, userId]);
-            setPlayerJoined(playerJoined)
+        if(!adminJoin){
+            socket.emit('admin_session_join', [code]);
+            setAdminJoin(adminJoin)
         }
 
         socket.on('player_list', (playerList) => {
             setPlayers(playerList);
         })
 
-        window.addEventListener('beforeunload', () => {
-            socket.emit('session_disconnect')
-        })
-
         return () => {
-            window.removeEventListener('beforeunload', () => {
-                socket.emit('session_disconnect')
-            })
             socket.off('player_list');
         }
-    }, [code, name, userId, playerJoined])
+    }, [code])
 
 
 

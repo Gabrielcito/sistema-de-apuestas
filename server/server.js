@@ -48,10 +48,14 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
 
+    socket.on('admin_session_join', (args) => {
+        const [ code ] = args;
+
+        socket.join(code)
+    })
+
     socket.on('session_join', (args) => {
     
-        console.log("BBBB")
-
         const [ code, name, userId ] = args
 
         if(!rooms[code]){
@@ -65,7 +69,7 @@ io.on('connection', (socket) => {
             socketId: socket.id
         }
 
-        const reconect_player = rooms[code].players?.find(player => player.userId === userId)
+        const reconect_player = rooms[code].players.find(player => player.userId === userId)
 
         if(reconect_player){
             socket.join(code);
@@ -73,8 +77,6 @@ io.on('connection', (socket) => {
             io.to(code).emit('player_list', rooms[code].players)
             return 
         }
-
-        console.log(rooms)
 
         socket.join(code);
         rooms[code].players.push(player)
@@ -84,9 +86,6 @@ io.on('connection', (socket) => {
 
 
     socket.on('session_disconnect', () => {
-
-        console.log("desconectado")
-
         
         for(const code in rooms){
             rooms[code].players = rooms[code].players.filter((player) => player.socketId !== socket.id);
