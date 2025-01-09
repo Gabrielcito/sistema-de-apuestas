@@ -4,7 +4,6 @@
       {
         "src": "client/",
         "use": "@vercel/static-build",
-        "output": "build"
       },
       {
         "src": "server/",
