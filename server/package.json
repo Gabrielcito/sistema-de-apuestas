@@ -6,7 +6,8 @@
     "uuid": "^11.0.4"
   },
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build": "node server.js"
   },
   "type": "module"
 }
