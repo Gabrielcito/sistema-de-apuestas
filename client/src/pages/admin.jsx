@@ -59,7 +59,7 @@ export const Admin = () => {
       { isLog && 
       
         <>        
-          <main>
+          <div className="mainContainer">
 
             
             <div className="logoutBtnDiv">
@@ -77,7 +77,7 @@ export const Admin = () => {
                 Generar codigo
             </button>        
 
-          </main>
+          </div>
         </>
 
       
@@ -88,7 +88,7 @@ export const Admin = () => {
 
       {
         !isLog &&
-        <main>
+        <div className="mainContainer">
 
           <input type="password" className="identify" placeholder="Usuario" ref={adminName}/>
           <input type="password" className="identify" placeholder="Contraseña" ref={adminPass}/>
@@ -96,7 +96,7 @@ export const Admin = () => {
           <button className="enterButton" onClick={() => {checkCredentials()}}>
               Ingresar
           </button>        
-        </main>
+        </div>
       }
 
     </>
