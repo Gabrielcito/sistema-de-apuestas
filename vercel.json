@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "client/",
-        "use": "@vercel/static-build",
+        "use": "@vercel/static-build"
       },
       {
         "src": "server/",
