@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const CREDENTIALS = {
@@ -10,10 +12,11 @@ const CREDENTIALS = {
 export const Admin = () => {
 
   const [ isLog, setIsLog ] = useState(false);
-  const [ code, setCode ] = useState("");
 
   const adminName = useRef();
   const adminPass = useRef();
+
+  const navigate = useNavigate();
 
   const checkCredentials = () => {
 
@@ -27,29 +30,12 @@ export const Admin = () => {
 
     setIsLog(true)
     sessionStorage.setItem("user", "admin")
-
+    navigate('/admin/generatecode')
   }
 
   const logOut = () => {
     sessionStorage.removeItem("user")
     setIsLog(false);
-  }
-
-
-  const getCode =  async () => {
-    const codeRes = await fetch("http://localhost:4000/getCode", 
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    )
-
-    const codeJson = await codeRes.json();
-
-    setCode(codeJson.code)
-
   }
 
   return (
@@ -71,11 +57,7 @@ export const Admin = () => {
               </button>
             </div>
 
-            <input className="code" readOnly={true} value={code}/>
-
-            <button className="enterButton" onClick={() => {getCode()}}>
-                Generar codigo
-            </button>        
+            <Outlet/>
 
           </div>
         </>
