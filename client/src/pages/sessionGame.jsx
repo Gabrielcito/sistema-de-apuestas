@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useEffect, useState, cloneElement } from "react";
 import io from 'socket.io-client';
 
 export const Session = () => {
@@ -10,6 +10,7 @@ export const Session = () => {
 
     const [ players, setPlayers ] = useState([]);
     const [ playerJoined, setPlayerJoined ] = useState(false);
+    const [ children, setChildren ] = useState([]);
 
 
     const name = sessionStorage.getItem("name");
@@ -23,9 +24,10 @@ export const Session = () => {
             setPlayerJoined(playerJoined)
         }
 
-        socket.on('player_list', (playerList) => {
+        socket.on('player_list', async (playerList) => {
             setPlayers(playerList);
-            showNotification(players.at(-1).name)
+            if(name !== playerList.at(-1).name) showNotification(playerList.at(-1).name);
+
         })
 
         window.addEventListener('beforeunload', () => {

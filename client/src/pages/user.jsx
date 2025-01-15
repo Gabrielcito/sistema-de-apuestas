@@ -66,10 +66,6 @@ export const User = () => {
         
           </>
         }
-        
-        <button className="enterButton" onClick={() => {showNotification()}}>
-          notification test
-        </button>
 
       </div>
     </>
