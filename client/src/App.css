@@ -189,3 +189,81 @@ li {
 .Btn:active {
   transform: translate(2px ,2px);
 }
+
+.notification-container {
+  position: fixed; 
+  top: 20px; 
+  left: 20px; 
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+  z-index: 1000; 
+}
+
+.notification {
+  background: white;
+  position: relative;
+  width: 13rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: black solid 1px;
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.slide-in-left {
+  animation-name: slideInLeft;
+}
+
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-20px);
+  }
+}
+
+.fade-out {
+  animation-name: fadeOut;
+}
+
+.slide-out-left {
+  animation-name: slideOutLeft;
+}

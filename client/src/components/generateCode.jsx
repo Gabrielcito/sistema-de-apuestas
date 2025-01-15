@@ -8,7 +8,7 @@ export const GenerateCode = () => {
     const navigate = useNavigate();
     
     const getCode = async () => {
-        const codeRes = await fetch("https://sistema-de-apuestas-server.onrender.com/getCode", 
+        const codeRes = await fetch("http://localhost:4000/getCode", 
           {
             method: "POST",
             headers: {

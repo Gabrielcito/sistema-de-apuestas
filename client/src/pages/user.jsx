@@ -1,6 +1,5 @@
-import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom"
-
+import { useRef, useState, cloneElement } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const User = () => {
   
@@ -10,6 +9,8 @@ export const User = () => {
   const navigate = useNavigate();
 
   const [ userName, setUserName ] = useState("");
+  const [ children, setChildren ] = useState([]);
+  const [ counter, setCounter ] = useState(0);
 
   const userId = crypto.randomUUID();
 
@@ -28,6 +29,7 @@ export const User = () => {
 
   return (
     <>
+      
       <div className="mainContainer">
         
         {
@@ -65,6 +67,9 @@ export const User = () => {
           </>
         }
         
+        <button className="enterButton" onClick={() => {showNotification()}}>
+          notification test
+        </button>
 
       </div>
     </>
